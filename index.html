@@ -3,21 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine Surprise</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Valentine's Surprise</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fbe5e5;
+            text-align: center;
+            color: #333;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 40px;
+            color: #e74c3c;
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        p {
+            font-size: 18px;
+            color: #e74c3c;
+            animation: fadeIn 5s ease-in-out;
+        }
+
+        .button {
+            background-color: #e74c3c;
+            color: white;
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 20px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            animation: fadeIn 7s ease-in-out;
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+            background-color: #c0392b;
+        }
+
+        .hidden-content {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .reveal {
+            display: block;
+            font-size: 24px;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slideInFromLeft {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes slideInFromRight {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(0); }
+        }
+
+        /* Background */
+        .bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://media.giphy.com/media/13wC32lHkMI1K9HL5g/giphy.gif') no-repeat center center fixed;
+            background-size: cover;
+            z-index: -1;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .heart {
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 30px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="header">Will you be my Valentine?</h1>
-        <div class="buttons">
-            <button id="yes-btn" class="btn">Yes</button>
-            <button id="no-btn" class="btn">No</button>
-        </div>
+
+    <div class="bg"></div>
+
+    <h1>Will you be my Valentine?</h1>
+    <p>Click Yes or No</p>
+
+    <button class="button" id="yesBtn">Yes</button>
+    <button class="button" id="noBtn">No</button>
+
+    <div id="yesContent" class="hidden-content">
+        <p class="reveal">Haha, I knew you'd say Yes!</p>
+        <img src="https://media.giphy.com/media/13wC32lHkMI1K9HL5g/giphy.gif" alt="I Love You" width="300px">
+        <p>I'm so in love with you!</p>
+        <button class="button" id="nextPageBtn">Next Page</button>
     </div>
 
-    <div id="message" class="message"></div>
-    <div id="image-container" class="image-container"></div>
+    <div id="noContent" class="hidden-content">
+        <p class="reveal">Aww, you made a mistake...</p>
+        <p>You are still mine though!</p>
+        <img src="https://media.giphy.com/media/13wC32lHkMI1K9HL5g/giphy.gif" alt="I Love You" width="300px">
+        <p>See? You're already in love!</p>
+        <button class="button" id="nextPageBtn">Next Page</button>
+    </div>
 
-    <script src="script.js"></script>
+    <script>
+        document.getElementById('yesBtn').onclick = function() {
+            document.getElementById('yesContent').style.display = 'block';
+            document.getElementById('noContent').style.display = 'none';
+        }
+
+        document.getElementById('noBtn').onclick = function() {
+            document.getElementById('noContent').style.display = 'block';
+            document.getElementById('yesContent').style.display = 'none';
+        }
+
+        document.getElementById('nextPageBtn').onclick = function() {
+            window.location.href = 'your-next-page-url.html'; // Replace with actual URL of next page
+        }
+    </script>
+
 </body>
 </html>
